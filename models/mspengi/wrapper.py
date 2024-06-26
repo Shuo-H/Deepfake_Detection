@@ -91,8 +91,10 @@ class PengiWrapper():
         model.enc_text_len = args.dataset_config['enc_text_len']
         model.dec_text_len = args.dataset_config['dec_text_len']
         model_state_dict = torch.load(self.model_path, map_location=torch.device('cpu'))['model']
+        print(model_state_dict.keys())
+        print(model.state_dict().keys())
         try:
-            model.load_state_dict(model_state_dict)
+            model.load_state_dict(model_state_dict, strict=False)
         except:
             new_state_dict = OrderedDict()
             for k, v in model_state_dict.items():

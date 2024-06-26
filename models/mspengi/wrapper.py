@@ -96,7 +96,8 @@ class PengiWrapper():
         except:
             new_state_dict = OrderedDict()
             for k, v in model_state_dict.items():
-                name = ".".join(k.split(".")[1:]) # remove "autoencoder"
+                name = k
+                # name = ".".join(k.split(".")[1:]) # remove "autoencoder"
                 # name = k[7:] # remove 'module.'
                 new_state_dict[name] = v
             model.load_state_dict(new_state_dict)
